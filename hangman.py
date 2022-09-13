@@ -10,6 +10,66 @@ def get_valid_word(words):
         word = random.choice(words)
     return word.upper()
 
+def print_lives(lives):
+    stickman = ''
+    if lives == 0:
+        stickman = "\
+     |------\n\
+     |    O\n \
+    | ---|---\n \
+    |   / \\ \n \
+    |  /   \\ \n \
+    |_____"
+    if lives == 1:
+        stickman = "\
+     |------\n\
+     |    O\n \
+    | ---|---\n \
+    |   /  \n \
+    |  /    \n \
+    |_____"
+    if lives == 2:
+        stickman = "\
+     |------\n\
+     |    O\n \
+    | ---|---\n \
+    |      \n \
+    |     \n \
+    |_____"
+    if lives == 3:
+        stickman = "\
+     |------\n\
+     |    O\n \
+    | ---|\n \
+    |     \n \
+    |      \n \
+    |_____"
+    if lives == 4:
+        stickman = "\
+     |------\n\
+     |    O\n \
+    |    |   \n \
+    |        \n \
+    |         \n \
+    |_____"
+    if lives == 5:
+        stickman = "\
+     |------\n\
+     |    O\n \
+    |        \n \
+    |        \n \
+    |         \n \
+    |_____"
+    if lives == 6:
+        stickman = "\
+     |------\n\
+     |     \n \
+    |        \n \
+    |        \n \
+    |        \n \
+    |_____"
+    print(stickman)
+
 
 def hangman():
     word = get_valid_word(words)
@@ -20,6 +80,7 @@ def hangman():
     lives = 6
 
     while len(word_letters) > 0 and lives > 0:
+        print_lives(lives)
         print(f'You have {lives} lives left. \tAnd you have used these letters: ', ' '.join(used_letters))
 
         word_list = [letter if letter in used_letters else '_' for letter in word]
@@ -40,6 +101,7 @@ def hangman():
             print('Invalid character. Please try again.\n')
 
     if lives == 0:
+        print_lives(lives)
         print('Sorry you died, The word was ', word)
     else:
         print('You successfully guessed the word, ', word, '!!!')
